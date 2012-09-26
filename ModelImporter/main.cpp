@@ -1,9 +1,11 @@
 #define GLUT_DISABLE_ATEXIT_HACK
 
 #include <GL\freeglut.h>
-#include "ModelLoader.h"
+#include "GameModel.h"
 
 GLfloat rotation = 0.0;
+
+GameModel model = GameModel();
 
 void init(void)
 {
@@ -11,7 +13,7 @@ void init(void)
 
 	glEnable(GL_DEPTH_TEST);
 
-	ModelLoader::LoadModel("display", "model/sphere.obj");
+	model.LoadModel("model/box.obj");
 }
 
 void display(void)
@@ -24,7 +26,7 @@ void display(void)
 
 	glPushMatrix();
 		glRotatef(rotation, 0.0, 1.0, 0.0);
-		ModelLoader::DrawModel("display");
+		model.DrawModel();
 	glPopMatrix();
 
 	rotation += 0.1;
